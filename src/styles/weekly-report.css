@@ -1,0 +1,470 @@
+/* ==========================================================================
+   WEEKLY REPORT - Production-Ready Page Styles
+   ========================================================================== */
+
+/* 
+   NAVBAR INTEGRATION:
+   ===================
+   1. padding-top: 72px accounts for fixed navbar height
+   2. Uses CSS variables for theme support
+   3. Follows dashboard styling conventions
+   4. Glass-effect panels match dashboard aesthetic
+*/
+
+/* ==================== PAGE CONTAINER ==================== */
+.report-container {
+  /* CRITICAL: Offset for fixed navbar */
+  padding-top: 72px;
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+  padding-bottom: var(--space-8);
+  
+  /* Minimum height to fill viewport */
+  min-height: 100vh;
+  
+  /* Background from theme */
+  background: var(--bg-main);
+  
+  /* Ensure content stays below navbar */
+  position: relative;
+  z-index: 1;
+  
+  /* Animation */
+  animation: fadeIn var(--transition-normal) ease-out;
+}
+
+/* Responsive: 64px navbar on mobile */
+@media (max-width: 640px) {
+  .report-container {
+    padding-top: 64px;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}
+
+/* ==================== HEADER ==================== */
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.report-header h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+}
+
+.report-header p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+}
+
+/* ==================== FILTERS ==================== */
+.report-filters {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.date-select {
+  padding: var(--space-3) var(--space-4);
+  padding-right: 40px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: all var(--transition-fast);
+}
+
+.date-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.date-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==================== KPI GRID ==================== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+/* ==================== KPI CARD ==================== */
+.kpi-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: all var(--transition-fast);
+}
+
+.kpi-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+
+.kpi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  flex-shrink: 0;
+}
+
+.kpi-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.kpi-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.kpi-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.kpi-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.kpi-trend {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.kpi-trend.up {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success);
+}
+
+.kpi-trend.down {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+}
+
+.kpi-trend.neutral {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+}
+
+.kpi-comparison {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  margin-top: var(--space-1);
+}
+
+/* ==================== CHARTS GRID ==================== */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+/* ==================== CHART CARD ==================== */
+.chart-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.chart-header {
+  padding: var(--space-5);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chart-header h3 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.chart-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+}
+
+.chart-body {
+  padding: var(--space-5);
+  height: 240px;
+}
+
+/* ==================== BAR CHART ==================== */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100%;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+}
+
+.bar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar {
+  width: 100%;
+  max-width: 40px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-hover) 100%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  position: relative;
+  min-height: 4px;
+  transition: all var(--transition-normal);
+}
+
+.bar:hover {
+  opacity: 0.8;
+}
+
+.bar-value {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.bar-label {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+/* ==================== LINE CHART ==================== */
+.line-chart {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.line-chart svg {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.line-chart svg defs {
+  display: block;
+}
+
+.grid-line {
+  stroke: var(--border-color);
+  stroke-width: 0.5;
+}
+
+.line-area {
+  fill: url(#lineGradient);
+  opacity: 0.2;
+}
+
+.line-path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.line-point {
+  fill: var(--accent);
+  stroke: var(--bg-secondary);
+  stroke-width: 2;
+}
+
+.line-labels {
+  display: flex;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+/* ==================== BREAKDOWN GRID ==================== */
+.breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+/* ==================== BREAKDOWN CARD ==================== */
+.breakdown-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.breakdown-card h3 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.breakdown-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 100px;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.breakdown-bar-container {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.breakdown-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-normal);
+}
+
+.breakdown-value {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  min-width: 30px;
+  text-align: right;
+}
+
+/* ==================== TYPE & STATUS DOTS ==================== */
+.type-dot,
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.type-dot.accident { background: var(--danger); }
+.type-dot.congestion { background: var(--warning); }
+.type-dot.violation { background: var(--info); }
+
+.status-dot.resolved { background: var(--success); }
+.status-dot.active { background: var(--danger); }
+.status-dot.investigating { background: var(--accent); }
+
+.rank {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-tertiary);
+  min-width: 24px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1200px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .report-header {
+    flex-direction: column;
+  }
+  
+  .report-header h2 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .kpi-card {
+    padding: var(--space-4);
+  }
+  
+  .kpi-value {
+    font-size: var(--font-size-xl);
+  }
+  
+  .chart-body {
+    height: 200px;
+  }
+  
+  .report-filters {
+    width: 100%;
+  }
+  
+  .date-select {
+    width: 100%;
+  }
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

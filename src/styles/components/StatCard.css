@@ -1,0 +1,74 @@
+/* ==========================================================================
+   STAT CARD COMPONENT
+   ========================================================================== */
+
+.stat-card {
+  /* Background from theme */
+  background: var(--bg-secondary);
+  
+  /* Border */
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  
+  /* Padding */
+  padding: var(--space-6);
+  
+  /* Shadow */
+  box-shadow: var(--shadow-sm);
+  
+  /* Transitions */
+  transition: all var(--transition-normal);
+  
+  /* Position for accent line */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent line */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent, var(--info));
+  opacity: 0.8;
+}
+
+/* Hover effect - elevation */
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-hover);
+}
+
+/* Card title */
+.stat-card-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-3);
+}
+
+/* Card value - large, bold number */
+.stat-card-value {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Type variants */
+.stat-card.danger { --accent: var(--danger); }
+.stat-card.warning { --accent: var(--warning); }
+.stat-card.success { --accent: var(--success); }
+.stat-card.info { --accent: var(--info); }
+
+.stat-card.danger .stat-card-value { color: var(--danger); }
+.stat-card.warning .stat-card-value { color: var(--warning); }
+.stat-card.success .stat-card-value { color: var(--success); }
+.stat-card.info .stat-card-value { color: var(--info); }

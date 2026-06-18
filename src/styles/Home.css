@@ -1,0 +1,474 @@
+/* ==========================================================================
+   HOME PAGE - Smart Road Monitoring System Landing
+   ========================================================================== */
+
+/* ==================== PAGE CONTAINER ==================== */
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-main);
+}
+
+/* ==================== ENHANCED PARTICLES ==================== */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--particle-opacity, 0.3);
+  }
+  90% {
+    opacity: var(--particle-opacity, 0.3);
+  }
+  100% {
+    transform: translateY(-100vh) translateX(30px);
+    opacity: 0;
+  }
+}
+
+/* ==================== ENHANCED GRID BACKGROUND ==================== */
+.grid-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.grid-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.08;
+}
+
+.grid-line.vertical {
+  width: 1px;
+  height: 100%;
+}
+
+.grid-line.horizontal {
+  height: 1px;
+  width: 100%;
+}
+
+/* Dark mode grid - more visible */
+:root:not(.theme-light) .grid-line {
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+  opacity: 0.15;
+}
+
+/* Light mode grid */
+.theme-light .grid-line {
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+  opacity: 0.2;
+}
+
+/* ==================== RADIAL GLOW EFFECT ==================== */
+.radial-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(99, 102, 241, 0.08) 0%,
+    rgba(59, 130, 246, 0.04) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: pulseGlow 8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Light mode - softer glow */
+.theme-light .radial-glow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(99, 102, 241, 0.05) 0%,
+    rgba(59, 130, 246, 0.02) 30%,
+    transparent 70%
+  );
+}
+
+/* ==================== HERO CONTENT ==================== */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 720px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== ENHANCED GLASS EFFECT ==================== */
+.hero-glass {
+  background: rgba(30, 32, 44, 0.75);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-12);
+  text-align: center;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(99, 102, 241, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.08) 0%,
+    transparent 40%,
+    rgba(59, 130, 246, 0.06) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-glass::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Light mode glass */
+.theme-light .hero-glass {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 30px rgba(99, 102, 241, 0.08);
+}
+
+/* ==================== HERO LOGO ==================== */
+.hero-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+  animation: logoFadeIn 1s ease-out;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.logo-image {
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.25));
+  transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+.logo-image:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 6px 20px rgba(99, 102, 241, 0.35));
+}
+
+/* Light mode - ensure logo visibility */
+.theme-light .logo-image {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+}
+
+/* Dark mode - subtle glow for logo */
+:root:not(.theme-light) .logo-image {
+  filter: drop-shadow(0 4px 20px rgba(99, 102, 241, 0.35));
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+.hero-title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-shadow: 0 2px 20px rgba(99, 102, 241, 0.15);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-xl);
+  color: var(--accent);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-4);
+  line-height: 1.5;
+}
+
+.hero-description {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 540px;
+  margin: 0 auto var(--space-8);
+}
+
+/* ==================== CTA BUTTON ==================== */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: white;
+  padding: var(--space-4) var(--space-8);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.cta-button:hover::before {
+  transform: translateX(100%);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 45px rgba(99, 102, 241, 0.35);
+}
+
+.cta-button:active {
+  transform: translateY(0) scale(1);
+}
+
+.cta-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.cta-button:hover .cta-arrow {
+  transform: translateX(5px);
+}
+
+/* ==================== FEATURES PREVIEW ==================== */
+.features-preview {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(99, 102, 241, 0.08);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+
+/* ==================== FOOTER ==================== */
+.home-footer {
+  position: absolute;
+  bottom: var(--space-6);
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+}
+
+.version-text {
+  font-size: var(--font-size-xs);
+  opacity: 0.6;
+  letter-spacing: 0.05em;
+}
+
+/* Dark mode version text */
+:root:not(.theme-light) .version-text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Light mode version text */
+.theme-light .version-text {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .home-container {
+    padding: var(--space-6);
+  }
+
+  .hero-glass {
+    padding: var(--space-8);
+  }
+
+  .hero-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .hero-description {
+    font-size: var(--font-size-sm);
+  }
+
+  .cta-button {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--font-size-base);
+  }
+
+  .logo-image {
+    max-width: 140px;
+  }
+
+  .features-preview {
+    gap: var(--space-3);
+  }
+
+  .feature-item {
+    font-size: var(--font-size-xs);
+    padding: var(--space-2) var(--space-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .logo-image {
+    max-width: 120px;
+  }
+
+  .features-preview {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ==================== THEME SPECIFIC ==================== */
+/* Dark mode glow effect */
+:root:not(.theme-light) .hero-glass {
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(99, 102, 241, 0.1),
+    0 0 40px rgba(99, 102, 241, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+:root:not(.theme-light) .particle {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+/* Light mode adjustments */
+.theme-light .hero-glass {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(99, 102, 241, 0.1),
+    0 0 30px rgba(99, 102, 241, 0.06);
+}
+
+.theme-light .hero-title {
+  color: var(--text-primary);
+}
+
+.theme-light .hero-subtitle {
+  color: var(--accent);
+}
+
+.theme-light .particle {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}

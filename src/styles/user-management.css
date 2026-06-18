@@ -1,0 +1,736 @@
+/* ==========================================================================
+   USER MANAGEMENT - Production-Ready Page Styles
+   ========================================================================== */
+
+/* 
+   NAVBAR INTEGRATION:
+   ===================
+   1. padding-top: 72px accounts for fixed navbar height
+   2. Uses CSS variables for theme support
+   3. Follows dashboard styling conventions
+   4. Glass-effect panels match dashboard aesthetic
+*/
+
+/* ==================== PAGE CONTAINER ==================== */
+.user-container {
+  /* CRITICAL: Offset for fixed navbar */
+  padding-top: 72px;
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+  padding-bottom: var(--space-8);
+  
+  /* Minimum height to fill viewport */
+  min-height: 100vh;
+  
+  /* Background from theme */
+  background: var(--bg-main);
+  
+  /* Ensure content stays below navbar */
+  position: relative;
+  z-index: 1;
+  
+  /* Animation */
+  animation: fadeIn var(--transition-normal) ease-out;
+}
+
+/* Responsive: 64px navbar on mobile */
+@media (max-width: 640px) {
+  .user-container {
+    padding-top: 64px;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}
+
+/* ==================== HEADER ==================== */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.user-header h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+}
+
+.user-header p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+}
+
+/* ==================== REGISTRY STATS ==================== */
+.registry-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card .stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-card.admin .stat-icon {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent);
+}
+
+.stat-card.officer .stat-icon {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--info);
+}
+
+.stat-card.user .stat-icon {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success);
+}
+
+.stat-card.total .stat-icon {
+  background: rgba(156, 163, 175, 0.15);
+  color: var(--text-tertiary);
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  margin-top: var(--space-1);
+}
+
+/* ==================== ADD USER BUTTON ==================== */
+.add-user-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--accent);
+  color: white;
+  padding: var(--space-3) var(--space-5);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.add-user-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==================== ERROR BANNER ==================== */
+.error-banner {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-4);
+  color: var(--danger);
+  font-size: var(--font-size-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-banner button {
+  background: none;
+  border: none;
+  color: var(--danger);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+/* ==================== FILTERS ==================== */
+.user-filters {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+  
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.user-filters input,
+.user-filters select {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  min-width: 160px;
+}
+
+.user-filters input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.user-filters input:focus,
+.user-filters select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.user-filters select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+}
+
+/* ==================== TABLE CONTAINER ==================== */
+.table-container {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==================== TABLE ==================== */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th {
+  text-align: left;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.user-table td {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-color);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.user-table tr:last-child td {
+  border-bottom: none;
+}
+
+.user-table tbody tr {
+  transition: all var(--transition-fast);
+}
+
+.user-table tbody tr:hover {
+  background: var(--bg-tertiary);
+}
+
+/* ==================== USER CELL ==================== */
+.user-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.user-id {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+/* ==================== ROLE BADGES ==================== */
+.role {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.role.admin {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent);
+}
+
+.role.officer {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--info);
+}
+
+.role.driver {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success);
+}
+
+.role.user {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success);
+}
+
+/* ==================== STATUS BADGES ==================== */
+.status {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.status.active {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success);
+}
+
+.status.inactive {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+}
+
+/* ==================== ACTION BUTTONS ==================== */
+.action-buttons {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.delete-btn,
+.deactivate-btn,
+.activate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.delete-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.deactivate-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.activate-btn:hover {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--success);
+}
+
+/* ==================== EMPTY STATE ==================== */
+.empty {
+  text-align: center;
+  padding: var(--space-12) var(--space-4);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
+/* ==================== MODAL ==================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn var(--transition-fast) ease-out;
+}
+
+.modal-box {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-xl);
+  animation: slideUp var(--transition-normal) ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: var(--font-size-xl);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: var(--space-6);
+}
+
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.modal-footer {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: flex-end;
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+
+/* ==================== BUTTONS ==================== */
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-tertiary);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+/* ==================== CONFIRM MODAL ==================== */
+.confirm-modal {
+  max-width: 360px;
+  text-align: center;
+  padding: var(--space-6);
+}
+
+.confirm-modal .modal-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+}
+
+.confirm-modal .modal-icon.warning {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+}
+
+.confirm-modal h3 {
+  margin-bottom: var(--space-2);
+}
+
+.confirm-modal p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-5);
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .registry-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .user-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .add-user-btn {
+    justify-content: center;
+  }
+  
+  .user-header h2 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .user-filters {
+    flex-direction: column;
+  }
+  
+  .user-filters input,
+  .user-filters select {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .modal-box {
+    margin: var(--space-4);
+    max-width: calc(100% - var(--space-8));
+  }
+  
+  .modal-footer {
+    flex-direction: column;
+  }
+  
+  .modal-footer button {
+    width: 100%;
+  }
+}
+
+/* ==================== INPUT ROW ==================== */
+.input-row {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.input-row .form-group {
+  flex: 1;
+}
+
+/* ==================== ERROR INPUT ==================== */
+.input-error {
+  border-color: var(--danger) !important;
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* ==================== ADVANCED OPTIONS ==================== */
+.advanced-options {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-color);
+}
+
+.checkbox-group {
+  margin-bottom: var(--space-3);
+}
+
+.checkbox-group:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-label .checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+  content: '\2713';
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ==================== SUCCESS BANNER ==================== */
+.success-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: var(--radius-md);
+  color: var(--success);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-4);
+  animation: slideUp var(--transition-normal) ease-out;
+}
+
+.success-banner .success-icon {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+}
+
+/* ==================== ADD USER MODAL ==================== */
+.add-user-modal {
+  max-width: 520px;
+}
+
+.add-user-modal .modal-body {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

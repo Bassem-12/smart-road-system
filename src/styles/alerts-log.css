@@ -1,0 +1,329 @@
+/* ==========================================================================
+   ALERTS LOG - Production-Ready Page Styles
+   ========================================================================== */
+
+/* 
+   NAVBAR INTEGRATION:
+   ===================
+   1. padding-top: 72px accounts for fixed navbar height
+   2. Uses CSS variables for theme support
+   3. Follows dashboard styling conventions
+   4. Glass-effect panels match dashboard aesthetic
+*/
+
+/* ==================== PAGE CONTAINER ==================== */
+.alerts-container {
+  /* CRITICAL: Offset for fixed navbar */
+  padding-top: 72px;
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+  padding-bottom: var(--space-8);
+  
+  /* Minimum height to fill viewport */
+  min-height: 100vh;
+  
+  /* Background from theme */
+  background: var(--bg-main);
+  
+  /* Ensure content stays below navbar */
+  position: relative;
+  z-index: 1;
+  
+  /* Animation */
+  animation: fadeIn var(--transition-normal) ease-out;
+}
+
+/* Responsive: 64px navbar on mobile */
+@media (max-width: 640px) {
+  .alerts-container {
+    padding-top: 64px;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}
+
+/* ==================== HEADER ==================== */
+.alerts-header {
+  margin-bottom: var(--space-6);
+}
+
+.alerts-header h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+}
+
+.alerts-header p {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+}
+
+/* ==================== FILTERS ==================== */
+.alerts-filters {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+  
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.alerts-filters input,
+.alerts-filters select {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  min-width: 180px;
+}
+
+.alerts-filters input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.alerts-filters input:focus,
+.alerts-filters select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.alerts-filters select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+}
+
+/* ==================== TABLE CONTAINER ==================== */
+.table-container {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==================== TABLE ==================== */
+.alerts-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.alerts-table th {
+  text-align: left;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.alerts-table td {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-color);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.alerts-table tr:last-child td {
+  border-bottom: none;
+}
+
+.alerts-table tbody tr {
+  transition: all var(--transition-fast);
+}
+
+.alerts-table tbody tr:hover {
+  background: var(--bg-tertiary);
+}
+
+/* ==================== TABLE CELL STYLES ==================== */
+.alerts-table .bold {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.alerts-table .desc {
+  max-width: 320px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ==================== TYPE PILLS ==================== */
+.type-pill {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.type-pill.accident {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+}
+
+.type-pill.congestion {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--warning);
+}
+
+.type-pill.violation {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--info);
+}
+
+/* ==================== SEVERITY BADGES ==================== */
+.severity {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.severity-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.severity.high {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+}
+
+.severity.high .severity-icon {
+  background: rgba(239, 68, 68, 0.25);
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+}
+
+.severity.medium {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--warning);
+}
+
+.severity.medium .severity-icon {
+  background: rgba(245, 158, 11, 0.25);
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+}
+
+.severity.low {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success);
+}
+
+.severity.low .severity-icon {
+  background: rgba(34, 197, 94, 0.25);
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+}
+
+/* ==================== STATUS BADGES ==================== */
+.status {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.status.active {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success);
+}
+
+.status.resolved {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--info);
+}
+
+.status.investigating {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent);
+}
+
+/* ==================== EMPTY STATE ==================== */
+.empty {
+  text-align: center;
+  padding: var(--space-12) var(--space-4);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
+/* ==================== LOADING STATE ==================== */
+.loading {
+  margin-bottom: var(--space-4);
+  color: var(--accent);
+  font-size: var(--font-size-sm);
+  animation: pulse 1.5s infinite;
+}
+
+/* ==================== ERROR STATE ==================== */
+.error {
+  margin-bottom: var(--space-4);
+  color: var(--danger);
+  font-size: var(--font-size-sm);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .alerts-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .alerts-header h2 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .alerts-filters {
+    flex-direction: column;
+  }
+  
+  .alerts-filters input,
+  .alerts-filters select {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .alerts-table th,
+  .alerts-table td {
+    padding: var(--space-3);
+  }
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

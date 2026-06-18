@@ -1,0 +1,246 @@
+/* ==========================================================================
+   DESIGN SYSTEM - Dark & Light Theme Support
+   ========================================================================== */
+
+/* 
+  THEME IMPLEMENTATION:
+  - Use data-theme="dark" or data-theme="light" on <html> element
+  - CSS variables cascade based on the theme attribute
+  - Navbar is transparent and adapts to the background
+*/
+
+/* ==================== DARK THEME (Default) ==================== */
+[data-theme="dark"],
+:root {
+  /* --- Backgrounds --- */
+  --bg-main: #0d0d0d;           /* Main app background */
+  --bg-secondary: #1a1a1a;      /* Card/section backgrounds */
+  --bg-tertiary: #262626;       /* Hover states, elevated elements */
+  --bg-transparent: rgba(26, 26, 26, 0.8); /* Transparent overlays */
+  
+  /* --- Text Colors --- */
+  --text-primary: #ffffff;       /* Main headings, important text */
+  --text-secondary: #a3a3a3;    /* Body text, descriptions */
+  --text-tertiary: #737373;     /* Muted, disabled text */
+  --text-inverse: #0d0d0d;      /* Text on light backgrounds */
+  
+  /* --- Accent Colors --- */
+  --accent: #6366f1;            /* Primary accent (indigo) */
+  --accent-hover: #818cf8;      /* Accent hover state */
+  --accent-muted: rgba(99, 102, 241, 0.15); /* Subtle accent backgrounds */
+  
+  /* --- Semantic Colors --- */
+  --success: #22c55e;           /* Green - positive states */
+  --warning: #f59e0b;           /* Amber - warnings */
+  --danger: #ef4444;            /* Red - errors, critical */
+  --info: #3b82f6;              /* Blue - informational */
+  
+  /* --- Borders --- */
+  --border-color: #2e2e2e;
+  --border-hover: #404040;
+  
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3); /* Accent glow */
+}
+
+/* ==================== LIGHT THEME ==================== */
+[data-theme="light"] {
+  /* --- Backgrounds --- */
+  --bg-main: #f5f5f5;           /* Main app background */
+  --bg-secondary: #ffffff;      /* Card/section backgrounds */
+  --bg-tertiary: #e5e5e5;      /* Hover states, elevated elements */
+  --bg-transparent: rgba(255, 255, 255, 0.9); /* Transparent overlays */
+  
+  /* --- Text Colors --- */
+  --text-primary: #171717;      /* Main headings, important text */
+  --text-secondary: #525252;    /* Body text, descriptions */
+  --text-tertiary: #a3a3a3;    /* Muted, disabled text */
+  --text-inverse: #ffffff;      /* Text on dark backgrounds */
+  
+  /* --- Accent Colors --- */
+  --accent: #4f46e5;            /* Primary accent (indigo) */
+  --accent-hover: #6366f1;      /* Accent hover state */
+  --accent-muted: rgba(79, 70, 229, 0.1); /* Subtle accent backgrounds */
+  
+  /* --- Borders --- */
+  --border-color: #e5e5e5;
+  --border-hover: #d4d4d4;
+  
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.2); /* Accent glow */
+}
+
+/* ==================== SPACING ==================== */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+}
+
+/* ==================== BORDER RADIUS ==================== */
+:root {
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* ==================== TRANSITIONS ==================== */
+:root {
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;       /* 24px */
+  --font-size-3xl: 1.875rem;    /* 30px */
+  --font-size-4xl: 2.25rem;     /* 36px */
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* ==================== BASE STYLES ==================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background-color: var(--bg-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+
+h1 { font-size: var(--font-size-3xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* ==================== FORM ELEMENTS ==================== */
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-accent { color: var(--accent); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger { color: var(--danger); }
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

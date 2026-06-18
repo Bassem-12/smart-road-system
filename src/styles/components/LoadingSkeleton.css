@@ -1,0 +1,80 @@
+/* ==========================================================================
+   LOADING SKELETON
+   ========================================================================== */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 25%,
+    var(--bg-secondary) 50%,
+    var(--bg-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+.skeleton.text { height: 16px; width: 100%; }
+.skeleton.circle { width: 40px; height: 40px; border-radius: 50%; }
+.skeleton.card { height: 120px; width: 100%; }
+.skeleton.list { height: 80px; width: 100%; }
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Dashboard Skeleton Layout */
+.dashboard-skeleton { padding: var(--space-8); }
+
+.dashboard-skeleton .skeleton-header { margin-bottom: var(--space-8); }
+.dashboard-skeleton .skeleton-header h1 { 
+  height: 36px; 
+  width: 280px; 
+  margin-bottom: var(--space-3); 
+}
+.dashboard-skeleton .skeleton-header p { 
+  height: 20px; 
+  width: 400px; 
+}
+
+.dashboard-skeleton .skeleton-stats { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: var(--space-6); 
+  margin-bottom: var(--space-8); 
+}
+
+.dashboard-skeleton .skeleton-section { margin-bottom: var(--space-6); }
+.dashboard-skeleton .skeleton-section-title { 
+  height: 24px; 
+  width: 180px; 
+  margin-bottom: var(--space-4); 
+}
+
+.dashboard-skeleton .skeleton-items { 
+  display: flex; 
+  flex-direction: column; 
+  gap: var(--space-3); 
+}
+
+.dashboard-skeleton .skeleton-item { height: 80px; }
+
+.dashboard-skeleton .skeleton-bottom { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: var(--space-6); 
+}
+
+.dashboard-skeleton .skeleton-card { height: 200px; }
+
+@media (max-width: 1200px) {
+  .dashboard-skeleton .skeleton-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .dashboard-skeleton .skeleton-stats,
+  .dashboard-skeleton .skeleton-bottom { grid-template-columns: 1fr; }
+  
+  .dashboard-skeleton { padding: var(--space-4); }
+}
